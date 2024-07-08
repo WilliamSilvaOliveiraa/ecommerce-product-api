@@ -1,5 +1,12 @@
+require("dotenv").config();
 const express = require("express");
 const mongoose = require("mongoose");
+
+const MongoPassword = process.env.MONGO_PASSWORD;
+const MongoUser = process.env.MONGO_USER;
+
+console.log("User", MongoUser);
+console.log("Password", MongoPassword);
 
 const app = express();
 app.use(express.json());
