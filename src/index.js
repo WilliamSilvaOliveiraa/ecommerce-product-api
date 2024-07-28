@@ -1,16 +1,13 @@
-require("dotenv").config();
 const express = require("express");
 const mongoose = require("mongoose");
-
-const MongoPassword = process.env.MONGO_PASSWORD;
-const MongoUser = process.env.MONGO_USER;
-
-console.log("User", MongoUser);
-console.log("Password", MongoPassword);
-
 const app = express();
+
+console.log("Rodou");
+require("dotenv").config();
+require("./db");
+
 app.use(express.json());
-const port = 3000;
+const port = process.env.PORT || 3000;
 
 const productSchema = new mongoose.Schema({
   title: String,
@@ -69,11 +66,4 @@ app.put("/:id", async (req, res) => {
 app.get("/", async (req, res) => {
   const products = await Product.find();
   res.send(products);
-});
-
-app.listen(port, () => {
-  mongoose.connect(
-    "mongodb+srv://williamsilva20062005:xrYVQfDOoUJhbQKk@products-learn-api.jighmlj.mongodb.net/?retryWrites=true&w=majority&appName=Products-learn-api"
-  );
-  console.log(`Example app listening at http://localhost:${port}`);
 });
