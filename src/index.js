@@ -9,21 +9,6 @@ require("./db");
 app.use(express.json());
 const port = process.env.PORT || 3000;
 
-const productSchema = new mongoose.Schema({
-  title: String,
-  description: String,
-  price: Number,
-  pictures: [
-    {
-      pictureUrl: String,
-    },
-  ],
-  specification: String,
-  disponibility: Boolean,
-  stock: Number,
-});
-const Product = mongoose.model("Product", productSchema);
-
 app.post("/", async (req, res) => {
   const product = new Product({
     title: req.body.title,
